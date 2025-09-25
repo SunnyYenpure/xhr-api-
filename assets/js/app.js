@@ -1,4 +1,4 @@
-var cl = console.log;
+
 
 var cl = console.log;
 
@@ -22,7 +22,7 @@ const snackbar = (msg, icon = "success") => {
     icon: icon,
     title: msg,
     showConfirmButton: false,
-    timer: 2000
+    timer: 2000,
   });
 };
 
@@ -49,7 +49,7 @@ const templating = (arr) => {
   });
   blogcontainer.innerHTML = result;
 };
-
+// edit functionality
 const onEdit = (ele) => {
   let Edit_id = ele.closest(".card").id;
   localStorage.setItem("Edit_id", Edit_id);
@@ -88,7 +88,7 @@ const fetchposts = () => {
   xhr.onload = function () {
     spinner.classList.add("d-none");
     if (xhr.status >= 200 && xhr.status <= 299) {
-      let data = JSON.parse(xhr.response);
+      let data = JSON.parse(xhr.response).reverse();
       templating(data);
     } else {
       Swal.fire("Error!", "Failed to load posts.", "error");
@@ -194,7 +194,7 @@ const onremove = (ele) => {
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Yes, delete it!",
   }).then((result) => {
     if (result.isConfirmed) {
       spinner.classList.remove("d-none");
@@ -222,14 +222,6 @@ const onremove = (ele) => {
 
 postform.addEventListener("submit", onpostsubmit);
 postupdatebtn.addEventListener("click", onupdate);
-
-
-
-
-
-
-
-
 
 // const postform = document.getElementById("postform");
 // const titlecontrol = document.getElementById("title");
@@ -265,7 +257,6 @@ postupdatebtn.addEventListener("click", onupdate);
 
 //                      <div class="card-footer d-flex justify-content-between">
 
-                        
 //                         <button onclick="onEdit(this)" class="btn btn-sm btn-outline-primary"> Edit</button>
 
 //                         <button onclick="onremove(this)" class="btn btn-sm btn-outline-danger"> Remove</button>
@@ -383,7 +374,7 @@ postupdatebtn.addEventListener("click", onupdate);
 //       col.classList.add("col-md-4", "mb-4");
 
 //       col.innerHTML = `
-        
+
 //            <div class="card h-100" id='${res.id}'>
 //                     <div class="card-header">
 //                         <h2 class="m-0">${postobj.title}</h2>
@@ -400,8 +391,7 @@ postupdatebtn.addEventListener("click", onupdate);
 //                         <button   onclick="onremove(this)" class="btn btn-sm btn-outline-danger"> Remove</button>
 //                     </div>
 //                 </div>
-        
-        
+
 //         `;
 //       blogcontainer.prepend(col);
 //     } else {
@@ -497,112 +487,3 @@ postupdatebtn.addEventListener("click", onupdate);
 
 // postform.addEventListener("submit", onpostsubmit);
 // postupdatebtn.addEventListener("click", onupdate);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// <!DOCTYPE html>
-// <html lang="en">
-//   <head>
-//     <meta charset="UTF-8" />
-//     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//     <link
-//       rel="stylesheet"
-//       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-//       integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-//       crossorigin="anonymous"
-//     />
-//     <title>crud by using xhr POST</title>
-//     <link rel="stylesheet" href="./assets/css/style.css" />
-//   </head>
-//   <body>
-//     <div class="container">
-//       <div class="row">
-//         <div class="col-md-6 offset-md-3">
-//           <div class="card my-4">
-//             <div class="card-body">
-//               <form id="postform">
-//                 <div class="form-group">
-//                   <label for="userid">userid</label>
-
-//                   <select id="userid" class="form-control">
-//                     <option value="1">1</option>
-//                     <option value="2">2</option>
-//                     <option value="3">3</option>
-//                     <option value="4">4</option>
-//                     <option value="5">5</option>
-//                     <option value="6">6</option>
-//                     <option value="7">7</option>
-//                     <option value="8">8</option>
-//                     <option value="9">9</option>
-//                     <option value="10">10</option>
-//                   </select>
-//                 </div>
-
-//                 <div class="form-group">
-//                   <label for="title">Title</label>
-//                   <input type="text" class="form-control" id="title" />
-//                 </div>
-
-//                 <div class="form-group">
-//                   <label for="body">content</label>
-//                   <textarea rows="4" class="form-control" id="body"> </textarea>
-//                 </div>
-
-//                 <button
-//                   type="submit"
-//                   id="postsubmitbtn"
-//                   class="btn btn-sm btn-outline-primary btn-block"
-//                 >
-//                   Add Post
-//                 </button>
-
-//                 <button
-//                   type="button"
-//                   id="postupdatebtn"
-//                   class="btn btn-sm btn-outline-primary btn-block d-none"
-//                 >
-//                   Update Post
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//       <div class="row" id="blogcontainer"></div>
-//     </div>
-
-//     <!-- spinner -->
-
-//     <div class="spinner d-none" id="spinner">
-//       <div class="spinner-border text-secondary" role="status">
-//         <span class="sr-only">Loading...</span>
-//       </div>
-//     </div>
-
-//     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-//     <script src="./assets/js/app.js"></script>
-//   </body>
-// </html>

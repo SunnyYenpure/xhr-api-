@@ -9,3 +9,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 }
+
+body{
+    background-color:aquamarine;
+}
